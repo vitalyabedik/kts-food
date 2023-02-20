@@ -7,7 +7,7 @@ import Recipes from './pages/Recipes';
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className="App">
       <Recipes />
       <DetailRecipe />
     </div>

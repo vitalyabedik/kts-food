@@ -1,11 +1,12 @@
 import React from 'react';
 
+import styles from './Cards.module.scss';
 import Card from '../Card';
 
 const Cards = () => {
   return (
-    <div>
-      <Card />
+    <div className={styles.cards}>
+      <Card />;
     </div>
   );
 };
