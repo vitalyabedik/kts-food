@@ -1,0 +1,9 @@
+@use 'base/normalize';
+
+// Base
+@use 'base/base';
+@use 'base/typography';
+
+// Fonts
+@import '../fonts/Avenir/fonts.scss';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');

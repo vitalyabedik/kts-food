@@ -1,0 +1,22 @@
+@use '@styles/abstract/constants' as constants;
+@use '../abstract/mixins' as mixins;
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  @include mixins.font-prim();
+  @include mixins.font($size: 1.2rem, $height: 1.6rem, $weight: normal);
+}
+
+h1 {
+  @include mixins.font($size: 4.5rem, $height: 5rem);
+}
+
+h2 {
+  @include mixins.font($size: 1.8rem, $height: 2.5rem, $weight: 500);
+  color: constants.$color-title-h2;
+  letter-spacing: -0.03em;
+}

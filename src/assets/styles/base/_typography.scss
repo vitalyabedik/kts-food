@@ -1,0 +1,9 @@
+@use '../abstract/constants' as constants;
+
+.text-color-main {
+  color: constants.$color-text-primary;
+}
+
+.text-color-add {
+  color: constants.$color-text-additional;
+}
