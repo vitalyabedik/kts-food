@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Button from '@components/Button';
+import burger from '@images/burger.png';
 
 import styles from './Card.module.scss';
-import burger from '../../../../../assets/images/burger.png';
 
 const Card = () => {
   return (

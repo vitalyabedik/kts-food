@@ -1,8 +1,9 @@
 @use '@styles/abstract/constants' as constants;
-@use '../abstract/mixins' as mixins;
+@use '@styles/abstract/mixins' as mixins;
 
 html {
   font-size: 10px;
+  background-color: constants.$color-background;
   scroll-behavior: smooth;
 }
 
@@ -12,7 +13,8 @@ body {
 }
 
 h1 {
-  @include mixins.font($size: 4.5rem, $height: 5rem);
+  @include mixins.font($size: 2.7rem, $height: 131.02%, $weight: 500);
+  color: constants.$color-title-h1;
 }
 
 h2 {
