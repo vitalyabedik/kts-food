@@ -1,15 +1,17 @@
 import React from 'react';
 
-import './App.css';
+import Loader from '@components/Loader';
+import DetailRecipe from '@pages/DetailRecipe';
+import Recipes from '@pages/Recipes';
 
-import DetailRecipe from './pages/DetailRecipe';
-import Recipes from './pages/Recipes';
+import styles from './App.module.scss';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Recipes />
       <DetailRecipe />
+      <Loader />
     </div>
   );
 };

@@ -1,12 +1,18 @@
 import React from 'react';
 
+import Card from '@pages/Recipes/components/Card';
+
 import styles from './Cards.module.scss';
-import Card from '../Card';
 
 const Cards = () => {
   return (
-    <div className={styles.cards}>
-      <Card />;
+    <div className={styles.wrapper}>
+      <div className={styles.cards__wrapper}>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </div>
   );
 };
