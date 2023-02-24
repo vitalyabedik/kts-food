@@ -11,23 +11,23 @@ import { RecipeCardTypes } from '../types';
 
 const App = () => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [items, setItems] = React.useState<RecipeCardTypes[] | null>(null);
+  const [recipes, setRecipes] = React.useState<RecipeCardTypes[] | null>(null);
 
   React.useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const { data } = await spoonacularApi.getRecipes();
-      setItems(transformRecipeApiData(data.results));
+      setRecipes(transformRecipeApiData(data.results));
     };
 
     fetchData();
   }, []);
 
   // eslint-disable-next-line no-console
-  console.log(items);
+  console.log(recipes);
 
   return (
     <div className={styles.app}>
-      <Recipes items={items} />
+      <Recipes recipes={recipes} />
       {/* <DetailRecipe /> */}
     </div>
   );

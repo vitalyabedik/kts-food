@@ -6,15 +6,15 @@ import styles from './Cards.module.scss';
 import { RecipeCardTypes } from '../../../../../types';
 
 type CardsProps = {
-  items: RecipeCardTypes[] | null;
+  recipes: RecipeCardTypes[] | null;
 };
 
-const Cards: React.FC<CardsProps> = ({ items }) => {
+const Cards: React.FC<CardsProps> = ({ recipes }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.cards__wrapper}>
-        {items?.map((item) => (
-          <Card key={item.id} {...item} />
+        {recipes?.map((recipe) => (
+          <Card key={recipe.id} {...recipe} />
         ))}
       </div>
     </div>

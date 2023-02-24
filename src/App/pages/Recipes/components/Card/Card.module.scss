@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: 189px;
   width: 155px;
   border-radius: constants.$border-radius-additional;
   box-shadow: constants.$color-card-shadow;
@@ -18,20 +20,30 @@
 
   &__image {
     display: block;
-    width: 87px;
-    height: 70px;
+    width: 105px;
+    height: 76px;
     object-fit: cover;
     margin: 3px 0;
+  }
+
+  &__title {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__content {
     color: constants.$color-text-additional;
     opacity: 0.5;
     padding: 4px 0;
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__footer {

@@ -21,10 +21,10 @@ export type Option = {
 };
 
 type RecipesProps = {
-  items: RecipeCardTypes[] | null;
+  recipes: RecipeCardTypes[] | null;
 };
 
-const Recipes: React.FC<RecipesProps> = ({ items }) => {
+const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
   const [text, setText] = React.useState('');
 
   const handleChange = (value: string): void => {
@@ -42,7 +42,7 @@ const Recipes: React.FC<RecipesProps> = ({ items }) => {
         </div>
       </header>
       <main className={styles.wrapper}>
-        <Cards items={items} />
+        <Cards recipes={recipes} />
       </main>
       {/* <MultiDropdown
         options={options}
