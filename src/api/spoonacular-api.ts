@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '@configs/api';
 import axios from 'axios';
 
 const APIKey = process.env.REACT_APP_API_KEY;
@@ -7,10 +8,10 @@ const instance = axios.create({
 
 const spoonacularApi = {
   getRecipes() {
-    return instance.get(`/recipes/complexSearch?apiKey=${APIKey}&addRecipeNutrition=true`);
+    return instance.get(`${API_ENDPOINTS.RECIPE}?apiKey=${APIKey}&${API_ENDPOINTS.ADDNUTRITION}`);
   },
-  getDetailRecipe(id: number) {
-    return instance.get(`/recipes/${id}/information?apiKey=${APIKey}`);
+  getDetailRecipe(id: string) {
+    return instance.get(`${API_ENDPOINTS.RECIPES(id)}?apiKey=${APIKey}`);
   },
 };
 

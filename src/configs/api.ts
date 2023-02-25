@@ -1,6 +1,5 @@
-export const API_ENDPOINTS = (id: number) => {
-  return {
-    RECIPE: '/recipes/complexSearch&addRecipeNutrition=true',
-    RECIPES: `/recipes/${id}/information`,
-  };
+export const API_ENDPOINTS = {
+  RECIPE: '/recipes/complexSearch',
+  ADDNUTRITION: 'addRecipeNutrition=true',
+  RECIPES: (id: string) => `/recipes/${id}/information`,
 };
