@@ -1,21 +1,27 @@
 import React from 'react';
 
+import { useRecipesContext } from '@App/App';
 import Card from '@pages/Recipes/components/Card';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Cards.module.scss';
-import { RecipeCardTypes } from '../../../../../types';
 
-type CardsProps = {
-  recipes: RecipeCardTypes[] | null;
-};
+const Cards: React.FC = () => {
+  let navigate = useNavigate();
+  const { recipes, error } = useRecipesContext();
 
-const Cards: React.FC<CardsProps> = ({ recipes }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.cards__wrapper}>
-        {recipes?.map((recipe) => (
-          <Card key={recipe.id} {...recipe} />
-        ))}
+        {recipes ? (
+          recipes.map((recipe) => (
+            <div key={recipe.id} className={styles.cards__item}>
+              <Card recipe={recipe} onClick={() => navigate(`${recipe.id}`)} />
+            </div>
+          ))
+        ) : (
+          <div>{error}</div>
+        )}
       </div>
     </div>
   );

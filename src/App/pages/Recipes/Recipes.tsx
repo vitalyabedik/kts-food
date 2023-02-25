@@ -6,11 +6,9 @@ import MultiDropdown from '@components/MultiDropdown';
 import SearchIcon from '@components/SearchIcon';
 import Cards from '@pages/Recipes/components/Cards';
 import cn from 'classnames';
-
-// import '@styles/layouts/_wrapper.scss';
+import { RecipeCardTypes } from 'src/types/RecipeCardTypes';
 
 import styles from './Recipes.module.scss';
-import { RecipeCardTypes } from '../../../types';
 
 /** Вариант для выбора в фильтре */
 export type Option = {
@@ -20,15 +18,11 @@ export type Option = {
   value: string;
 };
 
-type RecipesProps = {
-  recipes: RecipeCardTypes[] | null;
-};
-
-const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
+const Recipes: React.FC = () => {
   const [text, setText] = React.useState('');
 
   const handleChange = (value: string): void => {
-    setText(text);
+    setText(value);
   };
 
   return (
@@ -42,7 +36,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
         </div>
       </header>
       <main className={styles.wrapper}>
-        <Cards recipes={recipes} />
+        <Cards />
       </main>
       {/* <MultiDropdown
         options={options}
