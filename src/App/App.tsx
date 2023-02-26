@@ -30,6 +30,7 @@ const App = () => {
   const [error, setError] = React.useState<null | string>(null);
 
   React.useEffect(() => {
+    setIsLoading(true);
     const fetchData = async (): Promise<void> => {
       try {
         const { data } = await spoonacularApi.getRecipes();
@@ -45,16 +46,16 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className={styles.app}>
+    <div className={styles.app}>
+      <BrowserRouter>
         <Provider value={{ recipes, isLoading, error }}>
           <Routes>
             <Route path={ROUTES.MAIN} element={<Recipes />} />
             <Route path={ROUTES.DETAILRECIPE} element={<DetailRecipe />} />
           </Routes>
         </Provider>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 };
 

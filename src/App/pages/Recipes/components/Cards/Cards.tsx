@@ -13,15 +13,13 @@ const Cards: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.cards__wrapper}>
-        {recipes ? (
+        {error && <div>{error}</div>}
+        {recipes &&
           recipes.map((recipe) => (
             <div key={recipe.id} className={styles.cards__item}>
               <Card recipe={recipe} onClick={() => navigate(`${recipe.id}`)} />
             </div>
-          ))
-        ) : (
-          <div>{error}</div>
-        )}
+          ))}
       </div>
     </div>
   );

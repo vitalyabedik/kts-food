@@ -3,7 +3,6 @@ import React from 'react';
 import Button from '@components/Button';
 import ReturnIcon from '@components/ReturnIcon';
 import likeImg from '@images/like.svg';
-import menuPhoto from '@images/menuPhoto.png';
 import timeIcon from '@images/time.svg';
 import { transformRecipeApiData } from '@utils/transformRecipeApiData';
 import { Link, useParams } from 'react-router-dom';
@@ -11,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import RecipeInfoItem from './components/RecipeInfoItem';
 import styles from './DetailRecipe.module.scss';
 import spoonacularApi from '../../../api/spoonacular-api';
-import { extendedIngredients, RecipeDetailItemTypes } from '../../../types/RecipeDetailItemTypes';
+import { RecipeDetailItemTypes, extendedIngredients } from '../../../types/RecipeDetailItemTypes';
 
 const DetailRecipe = () => {
   const { id } = useParams();
@@ -27,7 +26,7 @@ const DetailRecipe = () => {
         title: data.title,
         likes: data.aggregateLikes,
         readyInMinutes: data.readyInMinutes,
-        ingredients: data.extendedIngredients.map((item: extendedIngredients) => item.name),
+        ingredients: data.extendedIngredients,
         summary: data.summary,
         instructions: data.instructions,
         dishTypes: data.dishTypes,
@@ -65,9 +64,9 @@ const DetailRecipe = () => {
                   ></div>
                   <div className={styles.detailRecipe__ingredients}>
                     <ul>
-                      {recipeDetail.ingredients.map((product: extendedIngredients, index: number) => {
-                        return <li key={`${product.name}-${index}`}>{product.name}</li>;
-                      })}
+                      {recipeDetail.ingredients.map((ingredient) => (
+                        <li key={`${ingredient}${recipeDetail.title}`}>{ingredient.name}</li>
+                      ))}
                     </ul>
                   </div>
                   <div

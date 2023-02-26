@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { useRecipesContext } from '@App/App';
 import Button from '@components/Button';
 import Input from '@components/Input';
+import Loader from '@components/Loader';
 import MultiDropdown from '@components/MultiDropdown';
 import SearchIcon from '@components/SearchIcon';
 import Cards from '@pages/Recipes/components/Cards';
@@ -19,6 +21,7 @@ export type Option = {
 };
 
 const Recipes: React.FC = () => {
+  const { isLoading } = useRecipesContext();
   const [text, setText] = React.useState('');
 
   const handleChange = (value: string): void => {
@@ -35,9 +38,7 @@ const Recipes: React.FC = () => {
           </Button>
         </div>
       </header>
-      <main className={styles.wrapper}>
-        <Cards />
-      </main>
+      <main className={styles.wrapper}>{isLoading ? <Loader className="mainLoader" /> : <Cards />}</main>
       {/* <MultiDropdown
         options={options}
         pluralizeOptions={pluralizeOptions}
