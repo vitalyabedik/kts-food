@@ -10,6 +10,11 @@ const spoonacularApi = {
   getRecipes() {
     return instance.get(`${API_ENDPOINTS.RECIPE}?apiKey=${APIKey}&${API_ENDPOINTS.ADDNUTRITION}`);
   },
+  getMoreRecipes(number: number, offset: number) {
+    return instance.get(
+      `${API_ENDPOINTS.RECIPE}?apiKey=${APIKey}&${API_ENDPOINTS.ADDNUTRITION}&number=${number}&offset=${offset}`
+    );
+  },
   getDetailRecipe(id: string) {
     return instance.get(`${API_ENDPOINTS.RECIPES(id)}?apiKey=${APIKey}`);
   },
