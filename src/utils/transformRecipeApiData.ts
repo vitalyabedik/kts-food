@@ -1,4 +1,4 @@
-import { RecipeItemApi, RecipeCardTypes, Ingredient } from '../types';
+import { RecipeItemApi, RecipeCardTypes, Ingredient } from '../typings';
 
 export const transformRecipeApiData = (data: RecipeItemApi[]): RecipeCardTypes[] => {
   return data.map((item: RecipeItemApi) => ({

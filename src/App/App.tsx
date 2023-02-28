@@ -8,7 +8,7 @@ import { transformRecipeApiData } from '@utils/transformRecipeApiData';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import styles from './App.module.scss';
-import { RecipeCardTypes } from '../types';
+import { RecipeCardTypes } from '../typings/RecipeCardTypes';
 
 type RecipesContextType = {
   recipes: RecipeCardTypes[];

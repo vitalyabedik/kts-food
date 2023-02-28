@@ -1,16 +1,5 @@
 @use '@styles/layouts/wrapper';
-@use '@styles/abstract/mixins' as mixins;
 
 .header__wrapper {
   padding: 24px 32px 20px 32px;
-}
-
-.header__items {
-  display: flex;
-  justify-content: space-between;
-}
-
-.header__button {
-  @include mixins.square(36px);
-  padding: 10px 9px;
 }

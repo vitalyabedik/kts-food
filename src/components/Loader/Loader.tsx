@@ -21,11 +21,9 @@ const Loader: React.FC<LoaderProps> = ({ loading = true, size = LoaderSize.m, cl
   if (!loading) return null;
 
   return (
-    loading && (
-      <div className="loader__wrapper">
-        <div className={loaderClasses}></div> ;
-      </div>
-    )
+    <div className="loader__wrapper">
+      <div className={loaderClasses}></div> ;
+    </div>
   );
 };
 

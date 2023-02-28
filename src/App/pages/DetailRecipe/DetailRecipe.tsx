@@ -1,19 +1,18 @@
 import React from 'react';
 
-import Button from '@components/Button';
-import ReturnIcon from '@components/ReturnIcon';
+import ReturnButton from '@components/ReturnButton';
 import likeImg from '@images/like.svg';
 import timeIcon from '@images/time.svg';
-import { transformRecipeApiData } from '@utils/transformRecipeApiData';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import RecipeInfoItem from './components/RecipeInfoItem';
 import styles from './DetailRecipe.module.scss';
 import spoonacularApi from '../../../api/spoonacular-api';
-import { RecipeDetailItemTypes, extendedIngredients } from '../../../types/RecipeDetailItemTypes';
+import { RecipeDetailItemTypes } from '../../../typings/RecipeDetailItemTypes';
 
 const DetailRecipe = () => {
   const { id } = useParams();
+
   const [recipeDetail, setRecipeDetail] = React.useState<RecipeDetailItemTypes | null>(null);
 
   React.useEffect(() => {
@@ -36,18 +35,13 @@ const DetailRecipe = () => {
     fetchData();
   }, [id]);
 
-  // eslint-disable-next-line no-console
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.detailRecipe}>
         {recipeDetail && (
           <>
-            <Link to="/">
-              <Button className={styles.button__return}>
-                <ReturnIcon />
-              </Button>
-            </Link>
+            <ReturnButton />
+
             <img className={styles.detailRecipe__img} src={recipeDetail.image} alt="menu__img" />
             <div className={styles['detailRecipe__wrapper-mask']}>
               <div className={styles['detailRecipe__wrapper-content']}>

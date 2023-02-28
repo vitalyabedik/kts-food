@@ -1,0 +1,11 @@
+@use '@styles/abstract/mixins' as mixins;
+
+.search__items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search__button {
+  @include mixins.square(36px);
+  padding: 10px 9px;
+}

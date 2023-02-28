@@ -4,7 +4,7 @@
     "paths": {
       "@App/*": ["src/App/*"],
       "@api/*": ["src/api/*"],
-      "@types/*": ["src/types/*"],
+      "@typings/*": ["src/typings/*"],
       "@pages/*": ["src/App/pages/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/assets/styles/*"],

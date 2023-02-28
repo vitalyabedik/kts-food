@@ -9,7 +9,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   onChange: (value: string) => void;
 };
 
-const Input: React.FC<InputProps> = ({ value, placeholder, onChange, className, ...restProps }) => {
+const Input: React.FC<InputProps> = ({ value, type, placeholder, onChange, className, ...restProps }) => {
   const inputClasses = cn(styles['input'], className, restProps.disabled && styles['input_disabled']);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value);
@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({ value, placeholder, onChange, className, 
       className={inputClasses}
       onChange={onChangeHandler}
       value={value}
-      type="text"
+      type={type}
       placeholder={placeholder}
     />
   );
