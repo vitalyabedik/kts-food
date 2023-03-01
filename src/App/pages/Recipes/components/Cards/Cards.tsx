@@ -1,79 +1,49 @@
 import React from 'react';
 
 import { useRecipesContext } from '@App/App';
+import Loader from '@components/Loader';
 import Card from '@pages/Recipes/components/Card';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
 
 import styles from './Cards.module.scss';
 
 const Cards: React.FC = () => {
-  const { recipes, error } = useRecipesContext();
+  const { recipes, error, hasMore, fetchMoreRecipes } = useRecipesContext();
+
+  const fetchNextRecipes = async () => {
+    const offset = recipes.length;
+
+    await fetchMoreRecipes(offset);
+  };
 
   return (
     <div>
-      <div className={styles.wrapper}>
-        <div className={styles.cards__wrapper}>
-          {error && <div>{error}</div>}
-          {recipes &&
-            recipes.map((recipe) => (
-              <Link key={recipe.id} to={`${recipe.id}`}>
-                <Card className={styles.cards__item} recipe={recipe} />
-              </Link>
-            ))}
-        </div>
-      </div>
+      {recipes ? (
+        <InfiniteScroll
+          dataLength={recipes.length}
+          next={fetchNextRecipes}
+          hasMore={hasMore}
+          loader={<Loader />}
+          endMessage={<p>All is loading!</p>}
+        >
+          <div className={styles.wrapper}>
+            <div className={styles.cards__wrapper}>
+              {error && <div>{error}</div>}
+              {recipes &&
+                recipes.map((recipe) => (
+                  <Link key={recipe.id} to={`${recipe.id}`}>
+                    <Card className={styles.cards__item} recipe={recipe} />
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </InfiniteScroll>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
 
 export default Cards;
-
-//   // !!! Не рабочий код
-
-// import React from 'react';
-
-// import { useRecipesContext } from '@App/App';
-// import Loader from '@components/Loader';
-// import Card from '@pages/Recipes/components/Card';
-// import InfiniteScroll from 'react-infinite-scroll-component';
-// import { useNavigate } from 'react-router-dom';
-
-// import styles from './Cards.module.scss';
-
-// const Cards: React.FC = () => {
-//   let navigate = useNavigate();
-//   const { recipes, error, hasMore, fetchRecipes } = useRecipesContext();
-
-//   const fetchMoreRecipes = async () => {
-//     const offset = recipes.length;
-//     await fetchRecipes(offset);
-//   };
-
-//   return (
-//     <div>
-//       <InfiniteScroll
-//         dataLength={recipes.length}
-//         next={fetchMoreRecipes}
-//         hasMore={hasMore}
-//         loader={<Loader />}
-//         endMessage={<p>All is loading!</p>}
-//       >
-//         <div className={styles.wrapper}>
-//           <div className={styles.cards__wrapper}>
-//             {error && <div>{error}</div>}
-//             {recipes &&
-//               recipes.map((recipe) => (
-//                 <div key={recipe.id} className={styles.cards__item}>
-//                   <Card recipe={recipe} onClick={() => navigate(`${recipe.id}`)} />
-//                 </div>
-//               ))}
-//           </div>
-//         </div>
-//       </InfiniteScroll>
-//     </div>
-//   );
-// };
-
-// export default Cards;
-
-// // !!! Не рабочий код
