@@ -1,0 +1,32 @@
+@use '@styles/abstract/mixins' as mixins;
+
+.recipeDetailItem {
+  &__title {
+    width: 296px;
+    padding-top: 13px;
+    margin-bottom: 16px;
+  }
+
+  &__recipe-info {
+    display: flex;
+    gap: 30px;
+  }
+
+  &__summary,
+  &__ingredients {
+    @include mixins.font($size: 1.2rem, $height: 180.52%, $weight: 500);
+    margin: 25px 0;
+  }
+
+  &__ingredients {
+    padding-left: 17px;
+
+    li {
+      list-style: disc;
+    }
+  }
+
+  &__instructions {
+    @include mixins.font($size: 1.2rem, $height: 180.52%, $weight: 500);
+  }
+}

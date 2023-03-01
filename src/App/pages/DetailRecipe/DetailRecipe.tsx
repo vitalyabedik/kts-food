@@ -1,35 +1,43 @@
 import React from 'react';
 
-import ReturnButton from '@components/ReturnButton';
-import likeImg from '@images/like.svg';
-import timeIcon from '@images/time.svg';
+import LineHorizontal from '@components/LineHorizontal';
+import Loader from '@components/Loader';
 import { useParams } from 'react-router-dom';
 
-import RecipeInfoItem from './components/RecipeInfoItem';
+import HeaderPhoto from './components/HeaderPhoto';
+import RecipeDetailItem from './components/RecipeDetailItem';
 import styles from './DetailRecipe.module.scss';
 import spoonacularApi from '../../../api/spoonacular-api';
 import { RecipeDetailItemTypes } from '../../../typings/RecipeDetailItemTypes';
 
-const DetailRecipe = () => {
+const DetailRecipe: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<null | string>(null);
   const { id } = useParams();
 
   const [recipeDetail, setRecipeDetail] = React.useState<RecipeDetailItemTypes | null>(null);
 
   React.useEffect(() => {
+    setIsLoading(true);
     const fetchData = async (): Promise<void> => {
-      const { data } = await spoonacularApi.getDetailRecipe(id!);
-
-      setRecipeDetail({
-        id: data.id,
-        image: data.image,
-        title: data.title,
-        likes: data.aggregateLikes,
-        readyInMinutes: data.readyInMinutes,
-        ingredients: data.extendedIngredients,
-        summary: data.summary,
-        instructions: data.instructions,
-        dishTypes: data.dishTypes,
-      });
+      try {
+        const { data } = await spoonacularApi.getDetailRecipe(id!);
+        setRecipeDetail({
+          id: data.id,
+          image: data.image,
+          title: data.title,
+          likes: data.aggregateLikes,
+          readyInMinutes: data.readyInMinutes,
+          ingredients: data.extendedIngredients,
+          summary: data.summary,
+          instructions: data.instructions,
+          dishTypes: data.dishTypes,
+        });
+      } catch (error) {
+        setError('Ошибка при отправке запроса!!!');
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -38,39 +46,25 @@ const DetailRecipe = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.detailRecipe}>
-        {recipeDetail && (
+        {!isLoading && recipeDetail !== null ? (
           <>
-            <ReturnButton />
-
-            <img className={styles.detailRecipe__img} src={recipeDetail.image} alt="menu__img" />
+            <HeaderPhoto image={recipeDetail.image} />
             <div className={styles['detailRecipe__wrapper-mask']}>
               <div className={styles['detailRecipe__wrapper-content']}>
-                <div className={styles.detailRecipe__line}></div>
-                <h1 className={styles.detailRecipe__title}>{recipeDetail.title}</h1>
-                <div className={styles['detailRecipe__recipe-info']}>
-                  <RecipeInfoItem img={timeIcon} value={recipeDetail.readyInMinutes} infoType="minutes" />
-                  <RecipeInfoItem img={likeImg} value={recipeDetail.likes} infoType="Rating" />
-                </div>
-                <div className={styles.detailRecipe__recipe}>
-                  <div
-                    className={styles.detailRecipe__summary}
-                    dangerouslySetInnerHTML={{ __html: recipeDetail.summary }}
-                  ></div>
-                  <div className={styles.detailRecipe__ingredients}>
-                    <ul>
-                      {recipeDetail.ingredients.map((ingredient) => (
-                        <li key={`${ingredient}${recipeDetail.title}`}>{ingredient.name}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div
-                    className={styles.detailRecipe__instructions}
-                    dangerouslySetInnerHTML={{ __html: recipeDetail.instructions }}
-                  ></div>
-                </div>
+                <LineHorizontal />
+                <RecipeDetailItem
+                  title={recipeDetail.title}
+                  readyInMinutes={recipeDetail.readyInMinutes}
+                  likes={recipeDetail.likes}
+                  summary={recipeDetail.summary}
+                  ingredients={recipeDetail.ingredients}
+                  instructions={recipeDetail.instructions}
+                />
               </div>
             </div>
           </>
+        ) : (
+          <Loader />
         )}
       </div>
     </div>

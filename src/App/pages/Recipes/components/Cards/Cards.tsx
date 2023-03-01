@@ -16,7 +16,7 @@ const Cards: React.FC = () => {
           {error && <div>{error}</div>}
           {recipes &&
             recipes.map((recipe) => (
-              <Link to={`${recipe.id}`}>
+              <Link key={recipe.id} to={`${recipe.id}`}>
                 <Card className={styles.cards__item} recipe={recipe} />
               </Link>
             ))}
