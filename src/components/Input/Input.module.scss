@@ -1,0 +1,29 @@
+@use '@styles/abstract/mixins' as mixins;
+@use '@styles/abstract/constants' as constants;
+
+.input {
+  width: 267px;
+  height: 36px;
+  background: constants.$color-background-element;
+  border: none;
+  border-radius: constants.$border-radius-primary;
+  padding: 11px 10px 10px 11px;
+  outline-style: none;
+
+  &_disabled {
+    background: constants.$color-background-element-disabled;
+  }
+
+  &::placeholder {
+    color: constants.$color-text-additional;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    background: constants.$color-background-element-focus;
+
+    &::placeholder {
+      color: constants.$color-dark;
+    }
+  }
+}

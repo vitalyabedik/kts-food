@@ -1,0 +1,9 @@
+@use '@styles/layouts/wrapper';
+
+.cards__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 35px 0;
+  padding: 0 24px 14px;
+}

@@ -1,0 +1,55 @@
+@use '@styles/abstract/mixins' as mixins;
+@use '@styles/abstract/constants' as constants;
+
+.multi-dropdown {
+  width: 368.5px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  user-select: none;
+  margin-top: 5px;
+}
+
+.multi-dropdown__select {
+  @include mixins.font($size: 1.2rem, $height: 2.8rem, $weight: normal);
+  width: 368.5px;
+  background: constants.$color-background-element;
+  border-radius: constants.$border-radius-primary;
+  padding: 4px 4px 4px 19px;
+  margin-bottom: 4px;
+}
+
+.multi-dropdown__disabled {
+  @include mixins.font($size: 1.2rem, $height: 2.8rem, $weight: normal);
+  background: constants.$color-background-element-disabled;
+  color: constants.$color-text-additional;
+  padding: 4px 4px 4px 19px;
+}
+
+.multi-dropdown__options {
+  background-color: constants.$color-light;
+  border-radius: constants.$border-radius-primary;
+}
+
+.multi-dropdown__option:first-child {
+  border-radius: constants.$border-radius-primary constants.$border-radius-primary 0 0;
+}
+
+.multi-dropdown__option:last-child {
+  border-radius: 0 0 constants.$border-radius-primary constants.$border-radius-primary;
+}
+
+.multi-dropdown__option {
+  @include mixins.font($size: 1.2rem, $height: 2.8rem, $weight: normal);
+  padding: 4px 4px 4px 19px;
+  background: constants.$color-dropdown;
+  color: constants.$color-dark;
+
+  &:hover {
+    background: constants.$color-selected;
+  }
+
+  &_selected {
+    background: constants.$color-selected;
+  }
+}

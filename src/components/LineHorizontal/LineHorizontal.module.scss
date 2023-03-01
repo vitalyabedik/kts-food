@@ -1,0 +1,9 @@
+@use '@styles/abstract/constants' as constants;
+
+.lineHorizontal {
+  height: 5px;
+  width: 58px;
+  border-radius: 12px;
+  margin: 0 auto 25px;
+  background-color: constants.$color-line;
+}

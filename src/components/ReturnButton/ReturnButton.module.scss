@@ -1,0 +1,13 @@
+@use '@styles/abstract/constants' as constants;
+@use '@styles/abstract/mixins' as mixins;
+
+.button_return {
+  @include mixins.square(45px);
+  z-index: 10;
+  position: absolute;
+  left: 18px;
+  top: 38px;
+  padding: 14px 18p x;
+  opacity: 0.5;
+  background-color: constants.$color-background-button-return;
+}

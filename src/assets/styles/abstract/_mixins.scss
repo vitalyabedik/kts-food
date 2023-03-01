@@ -1,0 +1,49 @@
+@mixin font($size, $height: $size, $weight: bold, $style: normal) {
+  font-size: $size;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $height;
+}
+
+@mixin font-prim() {
+  font-family: 'Avenir', Verdana, sans-serif;
+}
+
+@mixin font-add() {
+  font-family: 'DM Sans', Verdana, sans-serif;
+}
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin circle() {
+  border-radius: 50%;
+}
+
+@mixin loader-size($size, $border) {
+  @include square($size);
+  border-width: $border;
+}
+
+@mixin loader-color($color-prim, $color-extra) {
+  border-color: $color-prim;
+  border-left-color: $color-extra;
+}
+
+@mixin center-items() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition() {
+  transition: all 0.3s ease-out;
+}
+
+@mixin media-laptop {
+  @media (max-width: $content-width) {
+    @content;
+  }
+}
